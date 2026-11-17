@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Husain Naqvi Portfolio</title>
+<meta name="description" content="Engr. Husain Naqvi, biomedical engineer building medical AI for imaging and cancer genomics. 14 projects, each tested against published methods; most released as a free web app.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+@property --r{syntax:'<length-percentage>';inherits:false;initial-value:0px}
+:root{
+  --bg:#eef4f5; --paper:#ffffff; --ink:#0b2733; --ink2:#41606b; --ink3:#678089; --line:#c8d9dd; --line2:#dde9eb;
+  --royal:#00808a; --royal-d:#00626a; --emerald:#0e8a55; --blue:#1e4f8f; --signal:#e0533d; --grid:rgba(0,128,138,.075);
+  --pad:clamp(16px,3.2vw,44px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Archivo,system-ui,sans-serif;font-variation-settings:"wdth" 100;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--royal);outline-offset:3px;border-radius:4px}
+.cond{font-variation-settings:"wdth" 70;letter-spacing:-.01em}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--pad)}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:99;background:#fff;padding:8px 12px}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:40;background:rgba(238,244,245,.97);border-bottom:1px solid var(--line)}
+.hero.off .ticker,.hero.off .ecg path,.hero.off .ring i,.hero.off .rh i{animation-play-state:paused}
+.top .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:58px;gap:16px}
+.top .me{font-weight:700;text-decoration:none;font-size:15px}
+.top nav{display:flex;gap:6px}
+.top nav a{text-decoration:none;font-size:14.5px;color:var(--ink2);padding:6px 10px;border-radius:6px}
+.top nav a:hover{color:var(--ink);background:rgba(13,27,52,.06)}
+.top .open{justify-self:end;display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2)}
+.top .open i{width:8px;height:8px;border-radius:50%;background:var(--emerald);box-shadow:0 0 0 4px rgba(14,138,85,.16)}
+.top .cta{display:none}
+
+/* ---------- hero: editorial frame, mask line, giant initials, 3D cube ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/24px 24px}
+.ecg{position:absolute;left:0;right:0;top:28%;width:100%;height:120px;z-index:1;pointer-events:none;overflow:visible}
+.ecg path{fill:none;stroke:var(--signal);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1500;stroke-dashoffset:1500;animation:ecg 3.6s linear infinite}
+@keyframes ecg{70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.ruler{height:12px;background:
+  repeating-linear-gradient(90deg,var(--ink3) 0 1px,transparent 1px 100px) top/100% 12px no-repeat,
+  repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 10px) top/100% 6px no-repeat}
+.vruler{position:absolute;left:0;top:12px;bottom:0;width:12px;background:
+  repeating-linear-gradient(180deg,var(--ink3) 0 1px,transparent 1px 100px) left/12px 100% no-repeat,
+  repeating-linear-gradient(180deg,var(--line) 0 1px,transparent 1px 10px) left/6px 100% no-repeat}
+.hgrid{display:grid;grid-template-columns:minmax(0,1fr) 270px;min-height:min(calc(100vh - 70px),860px)}
+.hmain{position:relative;padding:34px var(--pad) 0;display:flex;flex-direction:column}
+.meta{display:grid;grid-template-columns:auto 1fr 1fr;gap:18px 36px;align-items:start;font-size:13px;line-height:1.45;color:var(--ink2)}
+.meta .pic{width:74px;height:74px;border-radius:50%;overflow:hidden;background:#dcebee;border:1px solid var(--line)}
+.meta .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.meta b{display:block;color:var(--ink);font-size:15px;font-weight:700}
+.meta .refs b{font-size:13px;font-weight:600}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 15px;border-radius:8px;border:1px solid var(--line);background:var(--paper);text-decoration:none;font-weight:600;font-size:14.5px;transition:border-color .2s,transform .2s}
+.btn:hover{border-color:var(--ink);transform:translateY(-1px)}
+.btn.main{background:var(--royal);border-color:var(--royal);color:#fff}
+.btn.main:hover{background:var(--royal-d)}
+.btn svg{width:16px;height:16px}
+
+.line{position:relative;z-index:4;display:grid;margin-top:clamp(28px,4vh,48px);max-width:min(620px,52%);cursor:none;touch-action:manipulation}
+.line p{grid-area:1/1;margin:0;font-weight:700;font-size:clamp(30px,3.5vw,48px);line-height:1.04;font-variation-settings:"wdth" 72;letter-spacing:-.01em;padding:6px 10px 10px 0}
+.line .formal{color:var(--ink)}
+.line .plain{color:#fff;background:var(--royal);clip-path:circle(var(--r) at var(--x,50%) var(--y,50%));transition:--r .35s cubic-bezier(.2,.7,.2,1)}
+.line.on .plain{--r:110px}
+.line.full .plain{--r:150%}
+.cur{position:absolute;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;pointer-events:none;opacity:0;transition:opacity .2s;mix-blend-mode:difference}
+.line.on .cur{opacity:1}
+.hint{margin:10px 0 0;font-size:13px;color:var(--ink3)}
+.hint b{color:var(--royal);font-weight:600}
+
+.stagebox{position:relative;flex:1;min-height:0;margin-top:10px}
+.initials{z-index:0;position:absolute;left:-.04em;bottom:-.17em;margin:0;font-weight:800;font-size:clamp(190px,25vw,380px);line-height:1;color:var(--royal);font-variation-settings:"wdth" 62;letter-spacing:-.02em;user-select:none;pointer-events:none}
+/* big 3D sphere of project images */
+.globe{position:absolute;z-index:3;right:clamp(0px,2vw,40px);top:50%;width:calc(var(--R)*2);height:calc(var(--R)*2);margin-top:calc(var(--R)*-1 + 30px);--R:clamp(140px,16.5vw,235px);perspective:1500px;touch-action:none;cursor:grab}
+.globe .core{position:absolute;inset:3%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffffff,#d3e9ec 45%,#7fbcc3 80%,#3d8f98);box-shadow:0 40px 80px -30px rgba(0,80,90,.55),inset -20px -30px 60px rgba(0,60,70,.25)}
+.globe .ring{position:absolute;inset:-9%;border-radius:50%;border:1.5px solid rgba(0,128,138,.45);transform:rotateX(74deg) rotateZ(-14deg);pointer-events:none}
+.globe .ring::after{content:"";position:absolute;left:50%;top:-6px;width:11px;height:11px;margin-left:-5px;border-radius:50%;background:var(--signal);box-shadow:0 0 12px var(--signal)}
+.globe .ring.r2{inset:-17%;border-color:rgba(30,79,143,.3);transform:rotateX(66deg) rotateZ(28deg)}
+.globe .ring.r2::after{background:var(--royal);box-shadow:0 0 12px var(--royal)}
+.globe .ring i{position:absolute;inset:0;border-radius:50%;animation:orb 7s linear infinite}
+.sph{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.globe{contain:layout style}
+.sph span{position:absolute;left:0;top:0;background:#fff no-repeat center/cover;border-radius:1px;backface-visibility:hidden;box-shadow:0 0 0 1px rgba(0,60,70,.18)}
+.cubecap{position:absolute;right:var(--pad);bottom:22px;z-index:3;background:rgba(255,255,255,.88);padding:6px 10px;border-radius:6px;font-size:13px;color:var(--ink2);text-align:right;max-width:240px}
+/* project reel: one screen, all projects in turn, fixed name bar */
+.reel{position:relative;z-index:2;margin:0 0 24px;width:min(540px,50%);padding:7px 7px 5px;background:rgba(11,39,51,.94);border-radius:12px;box-shadow:0 30px 60px -30px rgba(11,39,51,.7)}
+.reel .rh{display:inline-flex;align-items:center;color:#9fc1c6;font-size:12px;font-weight:700;white-space:nowrap}
+.reel .rh span{font:inherit;color:inherit}
+.reel .rh b{color:#fff;font-size:15px;margin-right:2px;background:none;padding:0}
+.reel .rh i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--signal);margin-right:6px;box-shadow:0 0 8px var(--signal);animation:blink 1s steps(2) infinite}
+.reel.hold .rh i{animation:none;background:#2fb3bc;box-shadow:none}
+@keyframes blink{50%{opacity:.2}}
+.rs{position:relative;aspect-ratio:2.25/1;background:#fff;border-radius:6px;overflow:hidden;cursor:pointer;box-shadow:inset 0 0 0 3px var(--c,#2fb3bc);transition:box-shadow .3s}
+.rs video,.rs img{position:absolute;inset:3px;width:calc(100% - 6px);height:calc(100% - 6px);object-fit:contain;background:#fff;opacity:0;transition:opacity .18s}
+.rs video{background:#0b2733}
+.rs img{padding:6px;box-sizing:border-box}
+.rs .on{opacity:1}
+.rt{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:4px 10px;padding:7px 4px 3px;color:#fff;min-height:38px}
+.rt>b{font-size:15px;font-weight:800;color:#fff;background:var(--c);padding:2px 8px;border-radius:5px;white-space:nowrap;transition:background .3s}
+.rt span{font-size:14px;font-weight:600;line-height:1.25;color:#e6f1f2;min-width:0}
+.rt small{font-size:11px;color:#9fc1c6;white-space:nowrap}
+.rd{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:2px 4px 2px}
+.rd button{all:unset;cursor:pointer;height:14px;position:relative}
+.rd button i{position:absolute;left:0;right:0;top:5px;height:4px;border-radius:2px;background:rgba(255,255,255,.22);overflow:hidden}
+.rd button.done i,.rd button.now i{background:#2fb3bc}
+.rd button.run i::after{content:"";position:absolute;inset:0;background:#2fb3bc;transform-origin:left;animation:fill var(--d) linear forwards}
+.rd button:hover i{background:#fff}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* left rail: always visible */
+body{padding-left:64px}
+.rail{position:fixed;left:0;top:0;bottom:0;width:64px;z-index:60;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 0;background:#0b2733}
+.rail .me{width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid #2fb3bc;margin-bottom:8px;padding:0}
+.rail .me img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.rail a,.rail button{all:unset;box-sizing:border-box;position:relative;width:42px;height:42px;display:grid;place-items:center;border-radius:10px;color:#cfe3e6;cursor:pointer;transition:background .12s,color .12s}
+.rail a:hover,.rail button:hover,.rail a.on{background:rgba(47,179,188,.28);color:#fff}
+.rail a:focus-visible,.rail button:focus-visible{outline:2px solid #2fb3bc;outline-offset:2px}
+.rail svg{width:20px;height:20px}
+.rail .sep{width:28px;height:1px;background:rgba(255,255,255,.16);margin:4px 0}
+.rail .grow{flex:1}
+.rail [data-t]::after{content:attr(data-t);position:absolute;left:54px;top:50%;transform:translate(-4px,-50%);white-space:nowrap;background:#0b2733;color:#fff;font-size:12.5px;font-weight:600;padding:5px 9px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .12s,transform .12s;box-shadow:0 8px 20px -8px rgba(0,0,0,.5)}
+.rail [data-t]:hover::after,.rail [data-t]:focus-visible::after{opacity:1;transform:translate(0,-50%)}
+.rail .snd .off{display:none}.rail .snd[aria-pressed="false"] .off{display:block}.rail .snd[aria-pressed="false"] .onn{display:none}
+.wash{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(180deg,rgba(238,244,245,.95) 0%,rgba(238,244,245,.9) 190px,rgba(238,244,245,0) 280px),linear-gradient(90deg,rgba(238,244,245,.9) 0%,rgba(238,244,245,.78) 34%,rgba(238,244,245,.18) 56%,rgba(238,244,245,0) 72%,rgba(238,244,245,.15) 100%)}
+.hero>.ruler,.hero>.vruler,.hero>.hgrid{position:relative;z-index:2}.hero>.vruler{position:absolute}
+.hside{background:rgba(255,255,255,.82)}
+.tag{position:absolute;z-index:3;left:var(--pad);top:16px;display:none}
+
+.hside{border-left:1px solid var(--line);position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent)}
+.ticker{position:absolute;left:0;right:0;top:0;list-style:none;margin:0;padding:0 22px;animation:up 46s linear infinite}
+.hside:hover .ticker{animation-play-state:paused}
+@keyframes up{to{transform:translateY(-50%)}}
+.ticker li{padding:7px 0;font-size:14.5px;font-weight:600;line-height:1.25;border-bottom:1px solid var(--line2)}
+.ticker a{text-decoration:none;display:flex;gap:10px;align-items:baseline}
+.ticker a:hover{color:var(--royal)}
+.ticker small{font-size:12px;color:var(--ink3);font-weight:500;min-width:20px}
+
+/* ---------- facts ---------- */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.facts div{padding:22px var(--pad) 24px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font-weight:800;font-size:clamp(30px,3vw,42px);line-height:1;font-variation-settings:"wdth" 66;color:var(--royal)}
+.facts span{display:block;margin-top:8px;font-size:14px;color:var(--ink2);line-height:1.4}
+
+/* ---------- section heads ---------- */
+section{padding:clamp(64px,8vw,110px) 0 0}
+.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:30px}
+.shead h2{margin:0;font-weight:700;font-size:clamp(34px,4.2vw,58px);line-height:1;font-variation-settings:"wdth" 70;letter-spacing:-.01em}
+.shead p{margin:0;max-width:440px;font-size:15px;color:var(--ink2)}
+.sgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.short{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;border-radius:10px;overflow:hidden;background:var(--paper);border:1px solid var(--line);transition:transform .25s,box-shadow .25s}
+.short:hover{transform:translateY(-4px);box-shadow:0 24px 40px -22px rgba(11,39,51,.45)}
+.short:focus-visible{outline:3px solid var(--royal);outline-offset:3px}
+.short .nm{display:flex;gap:10px;align-items:baseline;padding:10px 12px 9px;background:var(--c);color:#fff;font-weight:650;font-size:14.5px;line-height:1.25;min-height:54px}
+.short .nm b{font-weight:700;opacity:.75;font-size:12.5px}
+.short .vv{position:relative;aspect-ratio:16/10;background:#fff}
+.short video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.short .sp{position:absolute;right:8px;bottom:8px;font-size:11.5px;font-weight:700;color:#fff;background:rgba(11,39,51,.75);padding:3px 7px;border-radius:999px}
+@media (max-width:1000px){.sgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.short .nm{font-size:13px;min-height:48px}}
+.count{display:flex;align-items:flex-start;gap:6px;font-weight:800;font-variation-settings:"wdth" 62;line-height:.85}
+.count b{font-size:clamp(56px,7vw,104px);color:var(--royal);font-weight:800;display:inline-block;min-width:1.05em}
+.count span{font-size:clamp(28px,3vw,44px);color:var(--ink3)}
+
+/* ---------- projects: index + 3D preview ---------- */
+.pgrid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.plist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line2)}
+.plist button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:34px 1fr;column-gap:8px;padding:11px 10px;border-bottom:1px solid var(--line2);transition:background .2s,padding .25s}
+.plist .no{font-size:13px;color:var(--ink3);padding-top:3px;font-variant-numeric:tabular-nums}
+.plist .tt{font-weight:600;font-size:16.5px;line-height:1.3}
+.plist .ar{grid-column:2;font-size:12.5px;color:var(--c);font-weight:600;margin-top:2px}
+.plist button:hover{background:rgba(255,255,255,.6)}
+.plist button[aria-current="true"]{background:var(--paper);padding-left:18px;box-shadow:inset 3px 0 0 var(--c)}
+.plist button[aria-current="true"] .no{color:var(--c);font-weight:700}
+.plist button:focus-visible{outline:3px solid var(--royal);outline-offset:-3px}
+.sticky{position:sticky;top:78px;perspective:1400px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;transform-style:preserve-3d;transition:transform .25s ease-out;box-shadow:0 30px 50px -34px rgba(13,27,52,.45)}
+.panel .fig{position:relative;aspect-ratio:16/9;border-bottom:1px solid var(--line2);background:#fff;overflow:hidden}
+.panel .fig img,.panel .fig video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:14px;background:#fff}
+.panel .fig video{padding:0;background:#0b2733}
+.panel.nofig .fig,.panel.nofig .ptabs{display:none}
+.ptabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 24px 0}
+.ptabs button{all:unset;cursor:pointer;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink2)}
+.ptabs button:hover{border-color:var(--ink)}
+.ptabs button[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.ptabs button:focus-visible{outline:3px solid var(--royal);outline-offset:2px}
+.panel .fig img.in,.panel .fig video.in{animation:wipe .7s cubic-bezier(.6,0,.2,1) both}
+@keyframes wipe{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0)}}
+.pbody{padding:20px 24px 22px}
+.pbody.in{animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+.area{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--c)}
+.area i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.pbody h3{margin:6px 0 6px;font-size:23px;line-height:1.2;font-weight:700;font-variation-settings:"wdth" 85}
+.what{margin:0 0 14px;color:var(--ink2);font-size:15.5px}
+.read{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.read div{padding:10px 12px;border-radius:6px;background:#f0f7f8;border:1px solid var(--line2)}
+.read dt{font-weight:800;font-size:23px;line-height:1.05;font-variation-settings:"wdth" 70;color:var(--c)}
+.read dd{margin:4px 0 0;font-size:12.8px;line-height:1.35;color:var(--ink2)}
+.note{margin:0 0 10px;padding-left:12px;border-left:3px solid var(--c);font-size:14.5px;color:var(--ink2)}
+.note b{color:var(--ink)}
+.tech{margin:0 0 14px;font-size:13px;color:var(--ink3)}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{display:inline-flex;align-items:center;height:36px;padding:0 13px;border-radius:7px;border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:14px;background:#fff}
+.links a:hover{border-color:var(--ink)}
+.links a.try{background:var(--c);border-color:var(--c);color:#fff}
+.prog{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:12.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.segs{flex:1;display:grid;grid-template-columns:repeat(12,1fr);gap:4px}
+.segs button{all:unset;cursor:pointer;height:14px;position:relative}
+.segs button::before{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:var(--line)}
+.segs button i{position:absolute;left:0;top:6px;height:2px;width:0;background:var(--ink)}
+.segs button.done i{width:100%}
+.segs button.now i{width:100%;background:var(--royal)}
+.segs button.run i{animation:fill var(--t,7s) linear forwards;background:var(--royal);width:0}
+@keyframes fill{to{width:100%}}
+.allp{display:none}
+
+/* ---------- research ---------- */
+.focus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.focus div{padding:22px 26px 26px 0;border-right:1px solid var(--line);margin-right:26px}
+.focus div:last-child{border-right:0;margin-right:0}
+.focus h3{margin:0 0 8px;font-size:21px;font-weight:700;font-variation-settings:"wdth" 85;line-height:1.2}
+.focus p{margin:0 0 10px;color:var(--ink2);font-size:15.5px}
+.focus .ex{font-size:13.5px;color:var(--ink3)}
+.how{margin-top:44px;display:grid;grid-template-columns:240px 1fr;gap:30px}
+.how h3{margin:0 0 6px;font-size:21px;font-variation-settings:"wdth" 85}
+.how p{margin:0;color:var(--ink2);font-size:15px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;counter-reset:s;border-top:1px solid var(--line)}
+.steps li{counter-increment:s;padding:14px 18px 16px 0;border-bottom:1px solid var(--line2);font-size:15px;line-height:1.45}
+.steps li::before{content:counter(s,decimal-leading-zero);display:block;font-weight:800;font-size:26px;font-variation-settings:"wdth" 62;color:var(--royal);line-height:1;margin-bottom:6px}
+
+/* ---------- experience ---------- */
+.two{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.tl{list-style:none;margin:0;padding:0}
+.tl>li{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.tl .when{font-size:14px;font-weight:700;color:var(--royal);padding-top:3px}
+.tl h3{margin:0;font-size:18.5px;line-height:1.3}
+.tl .org{margin:3px 0 8px;font-size:14.5px;color:var(--ink2)}
+.tl ul{margin:0;padding-left:18px;color:var(--ink2);font-size:15px}
+.tl ul li{margin:4px 0}
+.side .blk{padding:20px 0;border-top:1px solid var(--line)}
+.side h3{margin:0 0 6px;font-size:18.5px}
+.side p{margin:0 0 6px;font-size:15px}
+.side .dim{color:var(--ink2)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tags span{padding:4px 10px;border-radius:5px;background:var(--paper);border:1px solid var(--line2);font-size:13.5px}
+.side ul{margin:6px 0 0;padding-left:18px;font-size:15px;color:var(--ink2)}
+.side ul li{margin:4px 0}
+.cover{margin-top:14px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.more{margin-top:34px;padding:20px 24px;border:1px dashed var(--line);border-radius:8px}
+.more h3{margin:0 0 8px;font-size:18.5px}
+.more ul{margin:0;padding-left:18px;columns:2;column-gap:40px;font-size:14.5px;color:var(--ink2)}
+.more li{margin:4px 0;break-inside:avoid}
+.more b{color:var(--ink)}
+
+/* ---------- contact ---------- */
+.contact{margin-top:clamp(70px,9vw,120px);border-top:1px solid var(--line);padding:46px 0 30px}
+.contact .cgrid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:30px;align-items:end}
+.contact h2{margin:0;font-weight:800;font-size:clamp(56px,9vw,132px);line-height:.88;font-variation-settings:"wdth" 62;color:var(--royal);letter-spacing:-.01em}
+.contact p{margin:0 0 14px;color:var(--ink2);max-width:460px}
+.contact .mail{font-weight:700;font-size:clamp(17px,1.6vw,21px);color:var(--ink);text-decoration:none;border-bottom:2px solid var(--royal)}
+.foot{margin-top:40px;padding-top:16px;border-top:1px solid var(--line2);font-size:13px;color:var(--ink3)}
+
+/* ---------- small screens ---------- */
+@media screen and (max-width:1000px){
+  .hgrid{grid-template-columns:1fr}
+  .hside{display:none}
+  .meta{grid-template-columns:auto 1fr}
+  .meta .refs{grid-column:1/-1}
+  .pgrid{grid-template-columns:1fr}
+  .plist,.sticky,.count{display:none}
+  .globe{--R:min(150px,34vw);position:relative;top:auto;bottom:auto;right:auto;margin:26px auto 6px}.line{max-width:none}
+  .stagebox{min-height:0}.reel{width:100%;margin:16px 0 26px}.cubecap{display:none}
+  .wash{background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(180deg,rgba(238,244,245,.9) 0%,rgba(238,244,245,.82) 55%,rgba(238,244,245,.2) 100%)}
+  .hgrid{min-height:0}
+  .allp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .two{grid-template-columns:1fr}
+  .focus{grid-template-columns:1fr}.focus div{border-right:0;margin-right:0;border-bottom:1px solid var(--line2)}
+  .how{grid-template-columns:1fr}
+}
+@media screen and (max-width:700px){
+  .top nav,.top .open{display:none}
+  .top .wrap{grid-template-columns:1fr auto}
+  .top .cta{display:inline-flex;height:36px}
+  .vruler{display:none}
+  .meta{gap:14px 16px}
+  .meta .pic{width:60px;height:60px}
+  .stagebox{min-height:240px}
+  .initials{font-size:52vw}
+  .globe{--R:min(120px,32vw)}
+  .rt{grid-template-columns:auto auto 1fr}.rt small{display:none}.rt span{font-size:13px}.rs{aspect-ratio:16/10}
+  body{padding-left:0;padding-bottom:56px}
+  .rail{top:auto;right:0;width:auto;height:56px;flex-direction:row;justify-content:space-around;padding:0 6px;gap:0}
+  .rail .sep,.rail .grow,.rail .opt,.rail [data-t]::after{display:none}
+  .rail .me{width:38px;height:38px;margin:0}
+  .line{max-width:none}
+  .cubecap{display:none}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts div:nth-child(2){border-right:0}.facts div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .shead{flex-direction:column;align-items:flex-start}
+  .allp{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .tl>li{grid-template-columns:1fr;gap:4px}
+  .more ul{columns:1}
+  .contact .cgrid{grid-template-columns:1fr}
+  .read dt{font-size:20px}
+}
+.allp article{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.allp .fig{position:relative;aspect-ratio:16/9;border-bottom:1px solid var(--line2);background:#fff}
+.allp .fig img,.allp .fig video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:10px}
+.allp .fig video{padding:0;background:#0b2733}
+.allp .fig video:not([hidden])+.pimg{display:none}
+.thumbs{display:flex;gap:6px;padding:8px 10px 0;overflow-x:auto}
+.thumbs button{all:unset;cursor:pointer;flex:0 0 64px;height:42px;border:1px solid var(--line);border-radius:4px;background:#fff;overflow:hidden}
+.thumbs button[aria-pressed="true"]{border-color:var(--c);box-shadow:0 0 0 2px var(--c)}
+.thumbs img{width:100%;height:100%;object-fit:contain}
+.thumbs .vt{display:grid;place-items:center;background:#0b2733;color:#fff;font-size:11px;font-weight:700}
+/* cursor: scan reticle */
+@media (hover:hover) and (pointer:fine){html.cc,html.cc *{cursor:none!important}}
+.cc-dot,.cc-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:300;will-change:transform}
+.cc-dot{width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--signal)}
+.cc-ring{width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid var(--royal);border-radius:50%;display:grid;place-items:center;font-size:11.5px;font-weight:700;color:#fff;letter-spacing:.02em;transition:width .25s,height .25s,margin .25s,background .25s,opacity .2s,border-color .25s}
+.cc-ring::before{content:"";position:absolute;inset:-8px;background:linear-gradient(var(--royal),var(--royal)) top center/1.5px 7px no-repeat,linear-gradient(var(--royal),var(--royal)) bottom center/1.5px 7px no-repeat,linear-gradient(var(--royal),var(--royal)) left center/7px 1.5px no-repeat,linear-gradient(var(--royal),var(--royal)) right center/7px 1.5px no-repeat;transition:opacity .2s,transform .4s}
+.cc-ring.big{width:52px;height:52px;margin:-26px 0 0 -26px;background:rgba(0,128,138,.1)}
+.cc-ring.big::before{transform:rotate(45deg)}
+.cc-ring.lab{width:66px;height:66px;margin:-33px 0 0 -33px;background:var(--royal);border-color:var(--royal)}
+.cc-ring.lab::before{opacity:0}
+.cc-ring.hide,.cc-dot.hide{opacity:0}
+/* floating preview that follows the cursor over a project */
+.peek{position:fixed;left:0;top:0;width:320px;z-index:250;pointer-events:none;border-radius:8px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 30px 50px -20px rgba(11,39,51,.5);opacity:0;transition:opacity .2s}
+.peek.on{opacity:1}
+.peek .m{position:relative;aspect-ratio:16/10;background:#fff}
+.peek video,.peek img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.peek video{background:#0b2733}
+.peek img{padding:8px}
+.peek .cap{display:flex;flex-direction:column;gap:2px;padding:9px 12px;color:#fff;background:var(--c,var(--royal))}
+.peek .cap .a{font-size:16px;font-weight:800;line-height:1.2;font-variation-settings:"wdth" 92}
+.peek .cap .b{font-size:11.5px;font-weight:600;opacity:.85}
+@media (prefers-reduced-motion:reduce){.montage img{transition:none}.ecg path{animation:none;stroke-dashoffset:0}.ticker{animation:none}.panel .fig img.in,.pbody.in{animation:none}.line .plain{transition:none}}
+
+/* ---------- print / PDF ---------- */
+@media print{
+  @page{size:A4;margin:12mm}
+  body{background:#fff;font-size:10.5px;line-height:1.45}
+  .top,.ruler,.vruler,.hside,.stagebox,.hint,.line .plain,.cur,.plist,.sticky,.btn.pdf,.prog,.pintro,.thumbs,.allp video,.peek,.cc-dot,.cc-ring{display:none!important}
+  .rail,.reel{display:none!important}body{padding:0!important}
+  .allp .pimg{display:block!important}.hero{background:none}.montage,.wash,.globe,.cubecap{display:none!important}
+  .hgrid{display:block;min-height:0}.hmain{padding:0}
+  .hero{border:0}
+  .line{margin-top:14px;cursor:auto}.line p{font-size:24px}
+  .facts{margin-top:14px;border-top:1px solid var(--line)}
+  .facts div{padding:10px 12px}.facts b{font-size:22px}.facts span{font-size:10px}
+  section{padding-top:20px}
+  .shead{margin-bottom:12px;padding-bottom:8px}.shead h2{font-size:26px}.count b{font-size:40px}.count span{font-size:20px}.shead p{font-size:10.5px}
+  .pgrid{display:block}
+  .allp{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .allp article{break-inside:avoid}
+  .pbody{padding:8px 10px}.pbody h3{font-size:13px}.what{font-size:10px;margin-bottom:6px}
+  .read{gap:4px;margin-bottom:6px}.read div{padding:4px 5px}.read dt{font-size:13px}.read dd{font-size:8.5px}
+  .note{font-size:9.5px}.tech{font-size:9px;margin-bottom:6px}.links a{height:22px;font-size:9.5px;padding:0 7px}
+  .focus h3,.how h3{font-size:13px}.focus p,.focus .ex,.steps li,.how p{font-size:10px}.steps li::before{font-size:15px}.focus div{padding:10px 14px 10px 0;margin-right:14px}
+  .how{margin-top:14px;break-inside:avoid;grid-template-columns:150px 1fr;gap:14px}.steps li{padding:8px 12px 8px 0}.more{margin-top:12px;padding:10px 14px;break-inside:avoid}
+  .side .blk{padding:8px 0}.tl ul li,.side ul li{margin:1px 0}.cover{display:none}.contact .cgrid{grid-template-columns:1fr 1fr}.foot{margin-top:14px}
+  #experience{break-before:page}
+  .tl>li{padding:10px 0;grid-template-columns:110px 1fr}.tl h3,.side h3,.more h3{font-size:12.5px}.tl ul,.side ul,.side p,.tl .org,.more ul{font-size:10px}
+  .tags span{font-size:9.5px;padding:2px 6px}
+  .contact{margin-top:10px;padding:10px 0 0;break-inside:avoid}.contact h2{font-size:28px}.contact p{margin-bottom:6px}.contact .btns{margin-top:8px}.count{display:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
+<nav class="rail" aria-label="Quick links">
+  <a class="me" href="#top" data-t="Husain Naqvi"><img src="assets/photo_cut.png" alt="Husain Naqvi, back to top"></a>
+  <a href="https://github.com/Engr-HusainNaqvi" data-t="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a>
+  <a href="http://www.linkedin.com/in/hafizhussain" data-t="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21H9z"/></svg></a>
+  <a href="mailto:engr.husainnaqviuet@gmail.com" data-t="Email me" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+  <a href="Husain_Naqvi_Portfolio.pdf" download data-t="Portfolio PDF" aria-label="Download portfolio PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg></a>
+  <span class="sep"></span>
+  <a href="#projects" data-t="Projects" aria-label="Projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></a>
+  <a class="opt" href="#research" data-t="Research focus" aria-label="Research focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7 15h10"/></svg></a>
+  <a class="opt" href="#experience" data-t="Experience" aria-label="Experience"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></a>
+  <a class="opt" href="#contact" data-t="Contact" aria-label="Contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></a>
+  <span class="grow"></span>
+  <button type="button" class="snd" id="snd" aria-pressed="true" data-t="Click sound on/off" aria-label="Click sound"><svg class="onn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="m16 9 6 6m0-6-6 6"/></svg></button>
+</nav>
+<header class="top"><div class="wrap">
+  <a class="me" href="#top">Husain Naqvi</a>
+  <nav aria-label="Sections"><a href="#projects">Projects</a><a href="#research">Research</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
+  <span class="open"><i></i>Open to funded PhD and AI roles</span>
+  <a class="btn main cta" href="mailto:engr.husainnaqviuet@gmail.com">Contact</a>
+</div></header>
+
+<main id="top">
+<div class="hero">
+  
+  <div class="ruler" aria-hidden="true"></div><div class="vruler" aria-hidden="true"></div>
+  <div class="hgrid">
+    <div class="hmain">
+      <div class="meta">
+        <div class="pic"><img src="assets/photo_cut.png" alt="Portrait of Husain Naqvi"></div>
+        <div><b>Engr. Husain Naqvi</b>Biomedical engineer working on AI for medical imaging and cancer genomics</div>
+        <div class="refs"><b>Head of Biomedical Engineering, PESSI, Govt. of Punjab</b>Level 5 National Certified Assessor in AI, NAVTTC<br>PEC registration BIOMEDICAL/002739</div>
+      </div>
+      <div class="btns">
+        <a class="btn main" href="mailto:engr.husainnaqviuet@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email me</a>
+        <a class="btn pdf" href="Husain_Naqvi_Portfolio.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Portfolio PDF</a>
+        <a class="btn" href="http://www.linkedin.com/in/hafizhussain">LinkedIn</a>
+        <a class="btn" href="https://github.com/Engr-HusainNaqvi">GitHub</a>
+      </div>
+      <div class="line" id="line">
+        <p class="formal">I build medical AI that is tested against published methods, checked on outside data and free for anyone to use.</p>
+        <p class="plain" aria-hidden="true">In plain words: I teach computers to read X-rays, tumour samples and DNA, and I say openly when they get it wrong.</p>
+        <span class="cur" id="cur" aria-hidden="true"></span>
+      </div>
+      <p class="hint" id="hint"><b>Hover</b> over the sentence to read it in plain words.</p>
+      <div class="globe" id="cubewrap" role="img" aria-label="A 3D sphere covered with result figures from my projects. Drag to turn it."><div class="ring r2"></div><div class="core"></div><div class="sph" id="sph"></div><div class="ring"></div></div>
+      <div class="stagebox">
+        <svg class="ecg" viewBox="0 0 1500 120" preserveAspectRatio="none" aria-hidden="true"><path id="ecgp"/></svg>
+        <div class="reel" id="reel" role="group" aria-label="Video reel: model detections on real patient images">
+          <div class="rs" id="rscr" title="Open this project"><video muted playsinline preload="auto"></video><video muted playsinline preload="metadata"></video><img alt="Main result of the project shown"></div>
+          <div class="rt"><span class="rh"><i></i><b id="rno">01</b>/<span id="rtot">05</span></span><b id="rshort"></b><span id="rname"></span><small id="rarea"></small></div>
+          <div class="rd" id="rdots" role="group" aria-label="Choose a project"></div>
+        </div>
+        <p class="cubecap">Every tile on the sphere is a real result. Point at it to stop it and preview the project; drag to turn.</p>
+      </div>
+    </div>
+    <aside class="hside" aria-label="All projects"><ul class="ticker" id="ticker"></ul></aside>
+  </div>
+</div>
+
+<div class="facts">
+  <div><b>14 projects</b><span>11 with a live app you can open, no sign-in</span></div>
+  <div><b>MS, grade A</b><span>Biomedical Engineering, Riphah International University</span></div>
+  <div><b>4+ years</b><span>with hospital and medical equipment</span></div>
+  <div><b>2nd of 259</b><span>All Punjab Universities Innovation Expo 2022</span></div>
+</div>
+
+<section id="projects"><div class="wrap">
+  <div class="shead">
+    <div><h2>Selected projects</h2></div>
+    <div class="count" aria-live="polite"><b id="cnum">01</b><span>/14</span></div>
+  </div>
+  <div class="pgrid">
+    <div>
+      <p class="pintro" style="margin:0 0 14px;color:var(--ink2);font-size:15px;max-width:520px">Move your cursor over a project to preview its video and graphs. Each one shows what it does, its three main results in plain words and one honest limit. The coloured button opens the live app.</p>
+      <ol class="plist" id="plist"></ol>
+    </div>
+    <div class="sticky">
+      <div class="panel" id="panel">
+        <div class="fig" id="pfig"></div>
+        <div class="ptabs" id="ptabs" role="group" aria-label="Choose video or result"></div>
+        <div class="pbody" id="pbody"></div>
+      </div>
+      <div class="prog"><span>I</span><div class="segs" id="segs" role="group" aria-label="Go to project"></div><span>XII</span></div>
+    </div>
+  </div>
+  <div class="allp" id="allp"></div>
+  <div class="more">
+    <h3>Earlier work</h3>
+    <ul>
+      <li><b>MS thesis:</b> AI doctor companion that analyses several kinds of medical images and drafts a report</li>
+      <li><b>BSc final project:</b> IoT wearable fetal heart-rate monitor, 2nd of 259 at the Innovation Expo 2022</li>
+      <li>AI classifiers for real-time fall detection</li>
+      <li>SOP framework for managing hospital equipment</li>
+      <li>Nano-biomaterials for controlled fertilizer delivery</li>
+      <li>Banknote authentication and stock forecasting with neural networks</li>
+      <li>IoT pulse oximeter and IoT home automation</li>
+      <li>Brain tumour detection and skull stripping from MRI (MATLAB, 3D Slicer)</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="research"><div class="wrap">
+  <div class="shead"><h2>Research focus</h2><p>Three areas I want to keep working on in a PhD or research role. Each one is backed by finished projects above.</p></div>
+  <div class="focus">
+    <div><h3>Medical image analysis</h3><p>Classifying, outlining and aligning medical images: X-rays, colonoscopy video, retina photos and 3D MRI and CT.</p><p class="ex">Projects: fractures, polyps, mouse MRI-CT, diabetic eye disease, pneumonia</p></div>
+    <div><h3>Computational oncology and genomics</h3><p>Using gene activity, mutations and spatial tissue data to describe tumours and predict how patients will do.</p><p class="ex">Projects: tumour cell maps, immunotherapy response, 14-gene breast cancer test, DNA activity</p></div>
+    <div><h3>Trustworthy clinical AI</h3><p>Models that say how sure they are, are tested on data from another hospital, and report their failures openly.</p><p class="ex">Used in: calibration, uncertainty, conformal ranges and external tests across the projects</p></div>
+  </div>
+  <div class="how">
+    <div><h3>How I work</h3><p>The same six steps in every project, so the results can be trusted.</p></div>
+    <ol class="steps">
+      <li>Start from a real clinical question and an open, published dataset</li>
+      <li>Split data by patient, so the test is fair</li>
+      <li>Compare against published methods on the same data</li>
+      <li>Test on a second dataset the model has never seen</li>
+      <li>Report what failed as clearly as what worked</li>
+      <li>Release a free web app so anyone can try the model</li>
+    </ol>
+  </div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <div class="shead"><h2>Experience and education</h2><p>Four years in hospitals and medical equipment, alongside AI assessment and research.</p></div>
+  <div class="two">
+    <ol class="tl">
+      <li><div class="when">Jun 2025 to now</div><div><h3>Biomedical Engineer (BPS-17), Head of Department</h3>
+        <p class="org">Punjab Employees' Social Security Institution (PESSI), Govt. of Punjab</p>
+        <ul><li>Run equipment procurement end to end: specifications, bid evaluation, vendor selection and installation, under PPRA and Punjab Healthcare Commission rules</li>
+        <li>Plan medical equipment for special and development projects</li>
+        <li>Schedule preventive maintenance; install, calibrate and safety-test equipment in every department</li>
+        <li>Write SOPs and train clinical and technical staff</li></ul></div></li>
+      <li><div class="when">May 2025 to now</div><div><h3>National Certified Assessor in AI, ML and DL (Level 5)</h3>
+        <p class="org">NAVTTC, Govt. of Pakistan, PM Hunarmand Pakistan programme</p>
+        <ul><li>Assess AI trainees nationwide in neural networks, deep learning, NLP and computer vision</li>
+        <li>Score real AI projects against the national qualifications framework (NVQF), and review AI curricula</li></ul></div></li>
+      <li><div class="when">Jan 2023 to now</div><div><h3>Biomedical Engineer and Product Specialist</h3>
+        <p class="org">Hoora Pharma (Pvt.) Ltd., distributor of GE Healthcare, Lahore</p>
+        <ul><li>Prepared technical and financial comparisons of ultrasound and echocardiography systems for tenders</li>
+        <li>Demonstrated equipment to senior doctors; GE Healthcare Innovation Trail-Blazers award, 2023</li></ul></div></li>
+      <li><div class="when">Feb to Nov 2022</div><div><h3>Biomedical Engineer</h3>
+        <p class="org">Saarf Medical Solutions, Lahore</p>
+        <ul><li>Installed, repaired and calibrated ventilators, anaesthesia machines, monitors, incubators and ICU beds; trained ICU nurses</li></ul></div></li>
+      <li><div class="when">Jun to Aug 2019</div><div><h3>Trainee Biomedical Engineer</h3>
+        <p class="org">Lahore General Hospital</p>
+        <ul><li>Maintained ICU and ward equipment; kept inventory and service records</li></ul></div></li>
+    </ol>
+    <div class="side">
+      <div class="blk"><h3>MS Biomedical Engineering</h3><p>Riphah International University, 2024 to 2026, grade A</p><p class="dim">Thesis: AI doctor companion for multi-modality medical image analysis and automated report generation</p></div>
+      <div class="blk"><h3>BSc Biomedical Engineering</h3><p>UET Lahore, 2018 to 2022</p><p class="dim">Registered engineer, Pakistan Engineering Council (BIOMEDICAL/002739). IELTS 2026: B2.</p></div>
+      <div class="blk"><h3>Skills</h3><div class="tags"><span>Python</span><span>PyTorch</span><span>scikit-learn</span><span>XGBoost</span><span>CNN and U-Net</span><span>Transformers</span><span>YOLO</span><span>Survival analysis</span><span>Image registration</span><span>Spatial omics</span><span>Explainable AI</span><span>Uncertainty and calibration</span><span>MATLAB</span><span>3D Slicer</span><span>Streamlit</span><span>ONNX</span><span>Git</span><span>Equipment planning and tenders</span></div></div>
+      <div class="blk"><h3>Awards and leadership</h3><ul>
+        <li>2nd of 259 projects, All Punjab Universities Innovation Expo 2022</li>
+        <li>Innovation Trail-Blazers, GE Healthcare, 2023</li>
+        <li>Delivered 50+ workshops</li>
+        <li>Director Operations, Engineering in Medicine &amp; Biology Society, UET (2022)</li>
+        <li>Vice President, Blood Donor Society (2022)</li></ul>
+        <div class="cover"><img src="assets/li_cover.jpg" alt="LinkedIn banner: Engr. Husain Naqvi, Biomedical Manager, PEC Registered Master Engineer, National Certified Assessor NAVTTC for AI, ML and DL" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer class="contact" id="contact"><div class="wrap">
+  <div class="cgrid">
+    <h2>Get in<br>touch</h2>
+    <div>
+      <p>I am applying for funded PhD positions and scholarships, and for AI or biomedical engineering roles. Email is the fastest way to reach me.</p>
+      <a class="mail" href="mailto:engr.husainnaqviuet@gmail.com">engr.husainnaqviuet@gmail.com</a>
+      <div class="btns"><a class="btn" href="http://www.linkedin.com/in/hafizhussain">LinkedIn</a><a class="btn" href="https://github.com/Engr-HusainNaqvi">GitHub</a></div>
+    </div>
+  </div>
+  <p class="foot">© 2026 Husain Naqvi. All rights reserved. The project apps are for research and teaching only and are not medical devices.</p>
+</div></footer>
+
+<script>
+var AREAS={imaging:{name:'Medical imaging',c:'#1e4f8f'},omics:{name:'Cancer and genomics',c:'#b0376b'},clinical:{name:'Clinical care',c:'#00808a'},found:{name:'AI fundamentals',c:'#a36a00'}};
+var P=[
+ {a:'omics',img:'spatialtme',t:'Mapping cell types inside breast tumours',tech:'SpatialTME-AI: deconvolution benchmark on 10x Xenium and Visium, 7 methods',
+  w:'Estimates which cells (cancer, immune, blood vessel) sit at each spot of a tumour slice, checked against real single-cell measurements.',
+  m:[['0.852','match with true cell counts (r, 1 = perfect)'],['0.830','best published tool, cell2location'],['7','methods on the same held-out tissue']],
+  n:['Honest note','my planned graph neural network scored 0.678; I report it as a failed approach.'],app:'https://spatialtme-studio.streamlit.app',pg:'SpatialTME-AI'},
+ {a:'imaging',img:'medseg',t:'Outlining polyps in colonoscopy video',tech:'MedSeg-AI: MobileNetV3 U-Net, Kvasir-SEG, external test on CVC-ClinicDB',
+  w:'Draws the outline of a polyp, a possible early sign of bowel cancer, on each frame, fast enough for an ordinary computer.',
+  m:[['0.885','overlap with the doctor’s outline (Dice)'],['0.851','on another hospital’s images'],['17 ms','per frame on one CPU core']],
+  n:['Trade-off','as accurate as a much larger ResNet-34 model at about 1/19 of the computing cost.'],app:'https://polypseg-studio.streamlit.app',pg:'MedSeg-AI'},
+ {a:'omics',img:'geneexpr',t:'Reading DNA to predict gene switch activity',tech:'GeneExpr-AI: residual CNN, k-mer XGBoost and Nucleotide Transformer, lentiMPRA (Nature 2025)',
+  w:'Reads a 200-letter DNA sequence and predicts how strongly it switches a gene on in three human cell types.',
+  m:[['0.823','correlation with lab data (K562)'],['0.788','correlation in liver cells (HepG2)'],['10 / 10','test folds beat published MPRAnn']],
+  n:['Honest note','still below much larger models such as Enformer.'],app:'https://geneexpr-studio.streamlit.app',pg:'GeneExpr-AI'},
+ {a:'imaging',img:'fracture',t:'Spotting bone fractures in X-rays',tech:'FractureScope: EfficientNetV2 transfer learning, Grad-CAM, FracAtlas (4,083 X-rays)',
+  w:'Says whether a bone in an arm, leg, hip or shoulder X-ray is broken, and highlights where it is looking.',
+  m:[['93.3%','of unseen X-rays classified correctly'],['96.6%','of normal X-rays correctly cleared'],['0.94','AUROC (1 = perfect, 0.5 = guessing)']],
+  n:['Known limit','catches 77.6% of fractures; very small ones can be missed.'],app:'https://fracturescope.streamlit.app',pg:'Fracture-AI'},
+ {a:'omics',img:'immunoevo',t:'Predicting who responds to cancer immunotherapy',tech:'ImmunoEvo-AI: leave-one-cohort-out learning, 9 immunotherapy cohorts',
+  w:'Predicts from tumour gene activity and mutations whether a patient will benefit from checkpoint-inhibitor drugs, tested on studies it never saw.',
+  m:[['0.628','AUC on unseen patient groups'],['0.563','published TIDE score, same test'],['820','patients from 9 clinical studies']],
+  n:['Honest note','the custom deep network did worse (0.541); a simpler model won.'],app:'https://immunoevo-studio.streamlit.app',pg:'ImmunoEvo-AI'},
+ {a:'omics',img:'biomarker',t:'A 14-gene test for breast cancer outcome',tech:'Biomarker-AI: stability selection and Cox models, METABRIC (1,978), validated on TCGA (1,070)',
+  w:'Finds a small set of genes that, with age and stage, estimates a patient’s risk, then checks it once on a separate US cohort.',
+  m:[['0.720','risk ranking (C-index, 0.5 = chance)'],['0.730','on the US cohort (disease-specific)'],['+0.05','over PAM50 and Oncotype-style panels']],
+  n:['Honest note','it ties a model built on clinical facts alone.'],app:'https://biomarker-studio.streamlit.app',pg:'Biomarker-AI'},
+ {a:'imaging',img:'mousereg',t:'Aligning 3D MRI and CT scans of mice',tech:'MouseReg-AI: deformable registration, 221 micro-CT scans from 30 mice with tumours',
+  w:'Lines up an MRI and a CT scan of the same animal so soft tissue, bone and tumour can be seen in one view.',
+  m:[['0.69 mm','average alignment error'],['2 s','per pair, vs 88 s for ANTs'],['0%','impossible tissue folding']],
+  n:['Honest note','most of the gain comes from the final optimisation step, not the network alone.'],app:'https://mousereg-studio.streamlit.app',pg:'MouseReg-AI'},
+ {a:'imaging',img:'wbcxai',t:'Do AI explanations for blood cells hold up on a new microscope?',tech:'WBC-XAI: ConvNeXt, ViT and concept models (BiomedCLIP), 11 explainers, Raabin-WBC',
+  w:'Classifies white blood cells, then tests whether the heat maps and concepts that explain each decision stay faithful when images come from a different microscope.',
+  m:[['0.983','macro-F1 on the original microscope (ViT)'],['0.90 → 0.34','concept-model accuracy on the new microscope'],['6 / 11','explainers pass faithfulness tests']],
+  n:['Honest note','simulated image shifts hid the collapse; only real second-microscope data revealed it.'],pg:'WBC-XAI'},
+ {a:'imaging',img:'brillouin',t:'How little light can a Brillouin microscope use?',tech:'Brillouin-AI: estimators vs the Cramér–Rao bound, 123,255 real line-scan spectra (Nature Methods 2023 data)',
+  w:'Measures tissue stiffness from light spectra and asks how far the light dose can be cut before the readings break down, against the theoretical best possible precision.',
+  m:[['0.51','efficiency of a simulation-trained CNN at 10% light'],['0.13','standard curve fitting, same light'],['0.6%','CNN failures at 2% light, vs 23% for fitting']],
+  n:['Honest note','on typical spectra the CNN and fitting are close; its gain is robustness on the hard ones.'],pg:'Brillouin-AI'},
+ {a:'imaging',img:'qpiseg',t:'Finding cells in label-free microscope images',tech:'QPI-Seg-AI: U-Net with scratch, ImageNet and self-supervised starts vs Cellpose-SAM, Vicar et al. 2021 (6 cell lines)',
+  w:'Outlines each cell in quantitative phase images taken without dyes, and tests whether the model still works on cell lines it never saw.',
+  m:[['0.727','object overlap on held-out images (ImageNet start)'],['0.512','Cellpose-SAM on unseen cell lines, best of all'],['10%','of labels comes within 0.01 of using them all']],
+  n:['Honest note','self-supervised pretraining gave no gain; I report it as a negative result.'],pg:'QPI-Seg-AI'},
+ {a:'clinical',img:'gait',t:'Forecasting how a patient’s walking will recover',tech:'GaitTwin: 1-D CNN ensemble with conformal ranges, GaitRec (1,854 patients)',
+  w:'Forecasts a rehab patient’s walking score over the coming weeks with a likely range, and exports a PDF report.',
+  m:[['4.94','points error on a 0 to 100 score'],['19%','lower error than assuming no change'],['86.7%','of outcomes inside the range']],
+  n:['Honest note','force-plate data explain only part of recovery.'],app:'https://gaittwin-gait-recovery.streamlit.app',pg:'Gait-Outcome-AI'},
+ {a:'clinical',img:'sperm',t:'Picking healthy sperm from microscope video',tech:'SpermSelect-AI: YOLO11, Kalman tracking, WHO/CASA motion analysis, VISEM (85 men)',
+  w:'Finds and follows every sperm in an IVF video, measures how each moves, and shortlists the best for ICSI.',
+  m:[['94.9%','agreement with WHO motility grades'],['0.656','tracking accuracy (MOTA), vs 0.461'],['0.91','AUROC for low sperm count']],
+  n:['Known limit','covers selection only; no public embryo outcome data exist.'],app:'https://spermselect-ai.streamlit.app',pg:'Sperm-Select-AI'},
+ {a:'imaging',img:'pneumonia',t:'Detecting pneumonia in children’s chest X-rays',tech:'CNN vs ResNet-18, Grad-CAM, calibration and uncertainty, 5,856 X-rays',
+  w:'Flags pneumonia and says how sure it is, so uncertain cases can go to a radiologist.',
+  m:[['95.9%','of test X-rays correct'],['0.991','AUC (1 = perfect)'],['0.91','AUROC at flagging its own mistakes']],
+  n:['Honest note','heat maps showed some errors focus on the heart, not the lungs.'],app:'https://pneumonia-xray-ai.streamlit.app',pg:'Pneumonia-Xray-AI'},
+ {a:'imaging',img:'retina',t:'Grading diabetic eye disease from retina photos',tech:'CNN vs ResNet-18 with ordinal (CORAL) loss and calibration, RetinaMNIST',
+  w:'Rates a retina photo from 0 (healthy) to 4 (severe) and decides who should see an eye specialist.',
+  m:[['0.92','AUC for referral decisions'],['0.76','agreement with experts (kappa)'],['3 runs','per model, paired statistics']],
+  n:['Known limit','the mildest stage is hard to see at low resolution.'],app:'https://retinopathy-dr-ai.streamlit.app',pg:'Retinopathy-DR-AI'}
+];
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+var STILL=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+var MEDIA={"spatialtme": {"g": ["spatialtme_g1.jpg", "spatialtme_g2.jpg", "spatialtme_g3.jpg"], "v": "spatialtme.mp4", "slides": true}, "medseg": {"g": ["medseg_g1.jpg", "medseg_g2.jpg", "medseg_g3.jpg"], "v": "medseg.mp4"}, "geneexpr": {"g": ["geneexpr_g1.jpg", "geneexpr_g2.jpg", "geneexpr_g3.jpg"], "v": "geneexpr.mp4", "slides": true}, "fracture": {"g": ["fracture_g1.jpg", "fracture_g2.jpg", "fracture_g3.jpg"], "v": "fracture.mp4"}, "immunoevo": {"g": ["immunoevo_g1.jpg", "immunoevo_g2.jpg", "immunoevo_g3.jpg"], "v": "immunoevo.mp4", "slides": true}, "biomarker": {"g": ["biomarker_g1.jpg", "biomarker_g2.jpg", "biomarker_g3.jpg"], "v": "biomarker.mp4", "slides": true}, "mousereg": {"g": ["mousereg_g1.jpg", "mousereg_g2.jpg", "mousereg_g3.jpg"], "v": "mousereg.mp4", "slides": true}, "gait": {"g": ["gait_g1.jpg", "gait_g2.jpg", "gait_g3.jpg"], "v": "gait.mp4", "slides": true}, "sperm": {"g": ["sperm_g1.jpg", "sperm_g2.jpg", "sperm_g3.jpg"], "v": "sperm.mp4"}, "pneumonia": {"g": ["pneumonia_g1.jpg", "pneumonia_g2.jpg", "pneumonia_g3.jpg"], "v": "pneumonia.mp4"}, "retina": {"g": ["retina_g1.jpg", "retina_g2.jpg", "retina_g3.jpg"], "v": "retina.mp4"}, "iris": {"g": ["iris_g1.jpg", "iris_g2.jpg", "iris_g3.jpg"], "v": "iris.mp4"}, "wbcxai": {"g": ["wbcxai_g1.jpg", "wbcxai_g2.jpg", "wbcxai_g3.jpg"]}, "brillouin": {"g": ["brillouin_g1.jpg", "brillouin_g2.jpg", "brillouin_g3.jpg"]}, "qpiseg": {"g": ["qpiseg_g1.jpg", "qpiseg_g2.jpg", "qpiseg_g3.jpg"]}};
+/* human-image results only (scans, photos, microscopy with the model's detections); graphs are not shown */
+var HV='assets/media/hu/';
+var HU={medseg:[{t:'Video',v:HV+'medseg.mp4'},{t:'Detected polyps',i:'assets/medseg.jpg'},{t:'More cases',i:'assets/media/medseg_g2.jpg'}],
+  fracture:[{t:'Video',v:HV+'fracture.mp4'},{t:'Detected fractures',i:'assets/fracture.jpg'}],
+  sperm:[{t:'Video',v:HV+'sperm.mp4'},{t:'Detected sperm',i:'assets/media/sperm_g3.jpg'}],
+  pneumonia:[{t:'Video',v:HV+'pneumonia.mp4'},{t:'Detected pneumonia',i:'assets/pneumonia.jpg'}],
+  retina:[{t:'Video',v:HV+'retina.mp4'},{t:'Detected retinopathy',i:'assets/retina.jpg'}],
+  spatialtme:[{t:'Cell maps on tissue',i:'assets/media/spatialtme_g2.jpg'}],
+  wbcxai:[{t:'Explanations on the new microscope',i:'assets/wbcxai.jpg'},{t:'Two microscopes',i:'assets/media/wbcxai_g1.jpg'}],
+  qpiseg:[{t:'Cells found in label-free images',i:'assets/qpiseg.jpg'}]};
+var $=function(s){return document.querySelector(s)};
+function pad(n){return (n<10?'0':'')+n}
+/* run something only while its element is on screen and the tab is visible (saves CPU and battery) */
+function whileSeen(el,start,stop,th){var seen=false;function upd(){if(seen&&!document.hidden)start();else stop()}
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){seen=es[0].isIntersecting;upd()},{threshold:th||0}).observe(el);else{seen=true;upd()}
+  document.addEventListener('visibilitychange',upd)}
+function fast(v,r){v.defaultPlaybackRate=r;v.playbackRate=r;var p=v.play();if(p)p.catch(function(){})}
+var SM='assets/media/sm/';function links(p){return (p.app?'<a class="try" href="'+p.app+'">Try the app</a>':'')+'<a href="https://engr-husainnaqvi.github.io/'+p.pg+'/">Results</a><a href="https://github.com/Engr-HusainNaqvi/'+p.pg+'">Code</a>'}
+function body(p){var A=AREAS[p.a];return '<div class="area"><i></i>'+A.name+'</div><h3>'+esc(p.t)+'</h3><p class="what">'+esc(p.w)+'</p>'+
+  '<dl class="read">'+p.m.map(function(m){return '<div><dt>'+m[0]+'</dt><dd>'+esc(m[1])+'</dd></div>'}).join('')+'</dl>'+
+  '<p class="note"><b>'+p.n[0]+':</b> '+esc(p.n[1])+'</p><p class="tech">'+esc(p.tech)+'</p><div class="links">'+links(p)+'</div>'}
+
+/* hero ticker of project names (doubled for a seamless loop) */
+(function(){var h=P.map(function(p,i){return '<li><a href="#projects" data-i="'+i+'"><small>'+pad(i+1)+'</small>'+esc(p.t)+'</a></li>'}).join('');
+  var t=$('#ticker');t.innerHTML=h+h.replace(/<a /g,'<a tabindex="-1" aria-hidden="true" ');
+  t.addEventListener('click',function(e){var a=e.target.closest('a');if(a)setTimeout(function(){show(+a.dataset.i,true)},50)})})();
+
+/* projects: index list, preview panel, progress segments, plus full cards for phones and print */
+var cur=-1,auto=!STILL,timer=null,T=7000;
+var plist=$('#plist'),segs=$('#segs');
+plist.innerHTML=P.map(function(p,i){return '<li><button type="button" data-i="'+i+'" style="--c:'+AREAS[p.a].c+'"><span class="no">'+pad(i+1)+'.</span><span class="tt">'+esc(p.t)+'</span><span class="ar">'+AREAS[p.a].name+'</span></button></li>'}).join('');
+segs.innerHTML=P.map(function(p,i){return '<button type="button" data-i="'+i+'" aria-label="Project '+(i+1)+': '+esc(p.t)+'"><i></i></button>'}).join('');
+$('#allp').innerHTML=P.map(function(p){var L=mediaList(p),v=L[0]&&L[0].v,im=L.filter(function(x){return x.i})[0];
+  if(!L.length)return '<article style="--c:'+AREAS[p.a].c+'"><div class="pbody">'+body(p)+'</div></article>';
+  return '<article style="--c:'+AREAS[p.a].c+'"><div class="fig">'+
+  (v?'<video src="'+v+'" muted loop playsinline preload="none" aria-label="Video: '+esc(p.t)+'"></video>':'')+
+  '<img class="pimg" src="'+(im?im.i:'')+'" alt="Result: '+esc(p.t)+'" loading="lazy"></div>'+
+  (L.length>1?'<div class="thumbs" role="group" aria-label="Video and results">'+L.map(function(x,j){return '<button type="button" aria-pressed="'+(j===0)+'" data-j="'+j+'" aria-label="'+x.t+'">'+(x.v?'<span class="vt" style="width:100%;height:100%">Video</span>':'<img src="'+x.i+'" alt="" loading="lazy">')+'</button>'}).join('')+'</div>':'')+
+  '<div class="pbody">'+body(p)+'</div></article>'}).join('');
+$('#allp').addEventListener('click',function(e){var b=e.target.closest('.thumbs button');if(!b)return;var art=b.closest('article'),i=[].indexOf.call(art.parentNode.children,art),it=mediaList(P[i])[+b.dataset.j],v=art.querySelector('video'),im=art.querySelector('.pimg');
+  art.querySelectorAll('.thumbs button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+  if(it.v){v.hidden=false;v.play().catch(function(){})}else{if(v){v.pause();v.hidden=true}im.src=it.i}});
+(function(){var vs=document.querySelectorAll('#allp video');if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.target.hidden)return;if(x.isIntersecting&&!STILL){x.target.playbackRate=2;x.target.play().catch(function(){})}else x.target.pause()})},{threshold:.5});
+  vs.forEach(function(v){io.observe(v)})})();
+function mediaList(p){return HU[p.img]||[]}
+function setMedia(i,k){var p=P[i],L=mediaList(p),it=L[k],fig=$('#pfig'),el;
+  $('#panel').classList.toggle('nofig',!L.length);if(!L.length){fig.innerHTML='';$('#ptabs').innerHTML='';return}
+  if(it.v){el=document.createElement('video');el.muted=true;el.loop=true;el.autoplay=!STILL;el.playsInline=true;el.setAttribute('playsinline','');el.src=it.v;el.setAttribute('aria-label','Video: '+p.t)}
+  else{el=new Image();el.src=it.i;el.alt=it.t+': '+p.t}
+  el.className='in';fig.appendChild(el);while(fig.children.length>2)fig.removeChild(fig.firstChild);
+  if(it.v&&!STILL){el.defaultPlaybackRate=2;el.playbackRate=2;var pr=el.play();if(pr)pr.catch(function(){})}
+  $('#ptabs').innerHTML=L.length>1?L.map(function(x,j){return '<button type="button" data-k="'+j+'" aria-pressed="'+(j===k)+'">'+x.t+'</button>'}).join(''):''}
+function show(i,user){
+  if(user)stopAuto();
+  if(i===cur)return;cur=i;var p=P[i],c=AREAS[p.a].c;
+  $('#panel').style.setProperty('--c',c);
+  setMedia(i,0);
+  var b=$('#pbody');b.innerHTML=body(p);b.classList.remove('in');void b.offsetWidth;b.classList.add('in');
+  $('#cnum').textContent=pad(i+1);
+  plist.querySelectorAll('button').forEach(function(x,k){x.setAttribute('aria-current',k===i?'true':'false')});
+  segs.querySelectorAll('button').forEach(function(x,k){x.className=k<i?'done':(k===i?(auto?'run':'now'):'')});
+  if(auto){clearTimeout(timer);timer=setTimeout(function(){show((cur+1)%P.length)},T)}
+}
+function stopAuto(){if(!auto)return;auto=false;clearTimeout(timer);var n=segs.querySelector('.run');if(n)n.className='now'}
+plist.addEventListener('pointerover',function(e){var b=e.target.closest('button');if(b)show(+b.dataset.i,true)});
+plist.addEventListener('focusin',function(e){var b=e.target.closest('button');if(b)show(+b.dataset.i,true)});
+plist.addEventListener('click',function(e){var b=e.target.closest('button');if(b)show(+b.dataset.i,true)});
+segs.addEventListener('click',function(e){var b=e.target.closest('button');if(b)show(+b.dataset.i,true)});
+$('#panel').addEventListener('pointerenter',stopAuto);
+$('#ptabs').addEventListener('click',function(e){var b=e.target.closest('button');if(b){stopAuto();setMedia(cur,+b.dataset.k)}});
+document.addEventListener('keydown',function(e){var r=$('#projects').getBoundingClientRect();if(r.top>innerHeight*.5||r.bottom<innerHeight*.5)return;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'&&document.activeElement.closest('#plist')){e.preventDefault();show((cur+1)%P.length,true);var bb=plist.querySelectorAll('button')[cur];if(document.activeElement.closest('#plist'))bb.focus()}
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp'&&document.activeElement.closest('#plist')){e.preventDefault();show((cur+P.length-1)%P.length,true);var bb2=plist.querySelectorAll('button')[cur];if(document.activeElement.closest('#plist'))bb2.focus()}});
+/* autoplay only while the section is on screen */
+var started=false;
+new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v&&!started){started=true;cur=-1;show(0)}
+  if(!v&&auto){clearTimeout(timer)}else if(v&&auto&&started&&cur>=0){clearTimeout(timer);timer=setTimeout(function(){show((cur+1)%P.length)},T)}},{threshold:.25}).observe($('#projects'));
+show(0);
+/* 3D tilt of the preview panel */
+(function(){var pn=$('#panel');if(STILL)return;
+  pn.addEventListener('pointermove',function(e){var r=pn.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    pn.style.transform='rotateY('+(x*8)+'deg) rotateX('+(-y*8)+'deg)'});
+  pn.addEventListener('pointerleave',function(){pn.style.transform=''})})();
+
+/* mask line: a circle under the cursor shows the plain-language version */
+(function(){var l=$('#line'),c=$('#cur'),pl=l.querySelector('.plain'),touch=matchMedia('(hover: none)').matches;
+  if(touch)$('#hint').innerHTML='<b>Tap</b> the sentence to read it in plain words.';
+  l.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var r=l.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    pl.style.setProperty('--x',x+'px');pl.style.setProperty('--y',y+'px');c.style.transform='translate('+x+'px,'+y+'px)';l.classList.add('on')});
+  l.addEventListener('pointerleave',function(){l.classList.remove('on')});
+  l.addEventListener('click',function(){var r=l.getBoundingClientRect();pl.style.setProperty('--x',r.width/2+'px');pl.style.setProperty('--y',r.height/2+'px');l.classList.toggle('full')});
+})();
+
+/* big 3D sphere: tiles of project results laid out on latitude bands; drag to turn */
+(function(){var g=$('#cubewrap'),sph=$('#sph');  var pics=[];P.forEach(function(p,pi){var m=MEDIA[p.img];pics.push(['assets/media/th/'+p.img+'.jpg',pi]);m.g.forEach(function(x){pics.push(['assets/media/th/'+x,pi])})});
+  /* 44 larger tiles instead of 68: same look, a third less to draw each frame */
+  var bands=[[-62,6],[-31,10],[0,12],[31,10],[62,6]];
+  function build(){var R=g.offsetWidth/2,n=0,h=R*Math.PI/180*31.5,html='';
+    bands.forEach(function(b){var lat=b[0],c=b[1],w=2*Math.PI*R*Math.cos(lat*Math.PI/180)/c*1.04;
+      for(var k=0;k<c;k++){var lon=k*360/c+(lat%2?12:0);
+        var pc=pics[(n*7)%pics.length];html+='<span data-i="'+pc[1]+'" style="width:'+w.toFixed(1)+'px;height:'+h.toFixed(1)+'px;margin:'+(-h/2).toFixed(1)+'px 0 0 '+(-w/2).toFixed(1)+'px;background-image:url('+pc[0]+');transform:rotateY('+lon+'deg) rotateX('+lat+'deg) translateZ('+R.toFixed(1)+'px)"></span>';n++}});
+    sph.innerHTML=html}
+  build();var rw;addEventListener('resize',function(){clearTimeout(rw);rw=setTimeout(build,200)});
+  var rx=-12,ry=0,vy=STILL?0:.22,drag=null,hover=false,mx=0,my=0;
+  function draw(){sph.style.transform='rotateX('+(rx+my*-12)+'deg) rotateY('+(ry+mx*20)+'deg)'}
+  /* the globe stops while the mouse is on it or dragging it, so the tile under the cursor stays put */
+  g.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')hover=true});
+  g.addEventListener('pointerleave',function(){if(!drag)hover=false});
+  g.addEventListener('pointerdown',function(e){drag={x:e.clientX,y:e.clientY,rx:rx,ry:ry};g.setPointerCapture(e.pointerId)});
+  g.addEventListener('pointermove',function(e){if(!drag)return;ry=drag.ry+(e.clientX-drag.x)*.45;rx=Math.max(-70,Math.min(70,drag.rx-(e.clientY-drag.y)*.45));draw()});
+  function up(e){drag=null;var r=g.getBoundingClientRect();hover=e.pointerType==='mouse'&&e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom}
+  g.addEventListener('pointerup',up);g.addEventListener('pointercancel',up);
+  addEventListener('pointermove',function(e){if(hover||drag)return;mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+  /* spin at 20 frames a second (smooth at this slow spin, a third of the work); full speed only while dragging */
+  var live=false,lastT=0,lastDraw='';function loop(t){if(!live)return;requestAnimationFrame(loop);
+    if(!drag&&t-lastT<48)return;var dt=lastT?Math.min(t-lastT,100):16;lastT=t;if(!drag&&!hover)ry+=vy*dt/16.7;
+    var s=(rx+my*-12).toFixed(2)+','+(ry+mx*20).toFixed(2);if(s!==lastDraw){lastDraw=s;draw()}}
+  draw();var hero=$('.hero');
+  whileSeen(hero,function(){hero.classList.remove('off');if(!live){live=true;requestAnimationFrame(loop)}},function(){hero.classList.add('off');live=false});
+})();
+
+/* ECG trace across the initials */
+(function(){var d='M0 70',x=0;while(x<1500){d+=' L'+(x+60)+' 70 Q'+(x+75)+' 54 '+(x+90)+' 70 L'+(x+118)+' 70 L'+(x+128)+' 82 L'+(x+142)+' 8 L'+(x+156)+' 104 L'+(x+166)+' 70 L'+(x+196)+' 70 Q'+(x+222)+' 44 '+(x+248)+' 70 L'+(x+300)+' 70';x+=300}
+  $('#ecgp').setAttribute('d',d)})();
+
+/* custom cursor: a scan reticle that labels what you can do */
+(function(){if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  document.documentElement.classList.add('cc');
+  var d=document.createElement('div'),r=document.createElement('div');d.className='cc-dot';r.className='cc-ring';document.body.appendChild(d);document.body.appendChild(r);
+  var x=-100,y=-100,last='';
+  addEventListener('pointermove',function(e){x=e.clientX;y=e.clientY;var tr='translate3d('+x+'px,'+y+'px,0)';d.style.transform=tr;r.style.transform=tr;
+    var t=e.target,st='',lab='';
+    if(t.closest&&t.closest('#line'))st='hide';
+    else if(t.closest&&t.closest('#rscr')){st='lab';lab=$('#reel').classList.contains('hold')?'Open':'View'}
+    else if(t.closest&&t.closest('.plist button,.ticker a')){st='lab';lab='View'}
+    else if(t.closest&&t.closest('#cubewrap')){st='lab';lab='Drag'}
+    else if(t.closest&&t.closest('a,button,.panel .fig'))st='big';
+    if(st+lab!==last){last=st+lab;r.className='cc-ring'+(st?' '+st:'');d.className='cc-dot'+(st==='hide'?' hide':'');r.textContent=lab}});
+  document.addEventListener('mouseleave',function(){r.classList.add('hide');d.classList.add('hide');last='x'});
+})();
+
+/* floating preview: the project's video, or its graphs in turn, follows the cursor */
+(function(){if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  var pk=document.createElement('div');pk.className='peek';pk.setAttribute('aria-hidden','true');
+  pk.innerHTML='<div class="cap"><span class="a"></span><span class="b"></span></div><div class="m"><video muted loop playsinline></video><img alt=""></div>';document.body.appendChild(pk);
+  var pv=pk.querySelector('video'),pi=pk.querySelector('img'),ca=pk.querySelector('.a'),cb=pk.querySelector('.b'),timer=null,on=-1,tx=0,ty=0,px=0,py=0,run=false;
+  function peekList(p){var L=mediaList(p);if(L.length)return L;var m=MEDIA[p.img]||{g:[]};
+    if(m.v)return [{t:'Video',v:SM+m.v}];
+    return [{t:'Results',i:'assets/'+p.img+'.jpg'}].concat(m.g.map(function(x){return {t:'Results',i:'assets/media/'+x}}))}
+  function open(i){if(i===on)return;var p=P[i],L=peekList(p);if(!L.length)return close();on=i;clearInterval(timer);pk.style.setProperty('--c',AREAS[p.a].c);ca.textContent=p.t;
+    if(L[0].v){pi.style.display='none';pv.style.display='block';pv.src=L[0].v;pv.defaultPlaybackRate=2;pv.playbackRate=2;pv.play().catch(function(){});cb.textContent='Video, 2x speed'}
+    else{pv.pause();pv.removeAttribute('src');pv.style.display='none';pi.style.display='block';
+      var g=L.map(function(x){return x.i}),n=0;pi.src=g[0];cb.textContent=L[0].t;
+      if(!STILL&&g.length>1)timer=setInterval(function(){n=(n+1)%g.length;pi.src=g[n];cb.textContent=L[n].t},900)}
+    pk.classList.add('on')}
+  function close(){on=-1;clearInterval(timer);pv.pause();pk.classList.remove('on')}
+  var gl=$('#cubewrap');function overGlobe(e){if(e.pointerType!=='mouse')return;var el=document.elementFromPoint(e.clientX,e.clientY),t=el&&el.closest('.sph span');if(!t)return close();move(e);open(+t.dataset.i)}
+  gl.addEventListener('pointermove',overGlobe);gl.addEventListener('pointerleave',close);gl.addEventListener('pointerup',overGlobe);
+  function move(e){tx=e.clientX+26;ty=e.clientY-110;if(tx+330>innerWidth)tx=e.clientX-346;if(ty<8)ty=8;pk.style.transform='translate3d('+tx+'px,'+ty+'px,0)'}
+  [['#plist','button'],['#ticker','a']].forEach(function(q){var el=$(q[0]);
+    el.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var b=e.target.closest(q[1]);if(!b)return close();move(e);open(+b.dataset.i)});
+    el.addEventListener('pointerleave',close)});
+})();
+
+/* reel next to the globe: only videos of real patient images (detections on the scans), then that project's detection still */
+(function(){var r=$('#reel'),scr=$('#rscr'),vs=scr.querySelectorAll('video'),im=scr.querySelector('img'),dots=$('#rdots'),R=[];
+  P.forEach(function(p,k){var L=mediaList(p);if(L[0]&&L[0].v)R.push({k:k,v:L[0].v,i:(L.filter(function(x){return x.i})[0]||{}).i})});
+  var VD=4000,ID=1600,i=0,front=0,timer=null,hold=false,live=false;
+  function sn(p){var k=p.tech.indexOf(':');return k>0&&k<16?p.tech.slice(0,k):p.pg}
+  $('#rtot').textContent=pad(R.length);dots.style.gridTemplateColumns='repeat('+R.length+',1fr)';
+  dots.innerHTML=R.map(function(x,n){return '<button type="button" data-i="'+n+'" aria-label="Show '+esc(P[x.k].t)+'"><i></i></button>'}).join('');
+  var db=dots.querySelectorAll('button');r.style.setProperty('--d',(VD+ID)+'ms');
+  function put(v,n){if(v.dataset.k!==String(n)){v.dataset.k=n;v.src=R[n].v}}
+  function go(n){clearTimeout(timer);i=n;var p=P[R[n].k];
+    r.style.setProperty('--c',AREAS[p.a].c);$('#rno').textContent=pad(n+1);$('#rshort').textContent=sn(p);$('#rname').textContent=p.t;$('#rarea').textContent=AREAS[p.a].name;
+    db.forEach(function(b,j){b.className=j<n?'done':''});void db[n].offsetWidth;db[n].className=hold||!live?'now':'run';
+    var v=vs[front],o=vs[1-front];put(v,n);im.classList.remove('on');o.classList.remove('on');o.pause();v.classList.add('on');
+    try{v.currentTime=0}catch(e){}if(live&&!STILL)fast(v,2);
+    if(R[n].i)im.src=R[n].i;put(o,(n+1)%R.length);o.preload='auto';
+    if(live&&!hold&&!STILL)timer=setTimeout(R[n].i?still:next,VD)}
+  function still(){im.classList.add('on');vs[front].classList.remove('on');vs[front].pause();timer=setTimeout(next,ID)}
+  function next(){front=1-front;go((i+1)%R.length)}
+  r.addEventListener('pointerenter',function(e){if(e.pointerType!=='mouse')return;hold=true;clearTimeout(timer);r.classList.add('hold');
+    var b=db[i];if(b.className==='run')b.className='now'});
+  r.addEventListener('pointerleave',function(){if(!hold)return;hold=false;r.classList.remove('hold');if(live)go(i)});
+  dots.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var n=+b.dataset.i;if(n===i&&im.classList.contains('on')){go(n);return}
+    if(vs[1-front].dataset.k===String(n))front=1-front;go(n)});
+  scr.addEventListener('click',function(){var k=R[i].k;stopAuto();show(k,true);var t=innerWidth>1000?$('#plist'):$('#allp').children[k];t.scrollIntoView({behavior:'smooth',block:'start'})});
+  vs.forEach(function(v){v.loop=true});
+  go(0);
+  whileSeen(r,function(){if(live)return;live=true;go(i)},function(){live=false;clearTimeout(timer);vs.forEach(function(v){v.pause()})},.15);
+})();
+
+/* left rail: highlight the section on screen */
+(function(){var as=document.querySelectorAll('.rail a[href^="#"]:not(.me)');if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;as.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+x.target.id)})})},{rootMargin:'-45% 0px -50% 0px'});
+  as.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)io.observe(s)})})();
+
+/* click sound when the mouse lands on a picture, video or graph (browsers allow sound only after your first click on the page) */
+(function(){var AC=null,buf=null,last=null,lt=0,on=true,btn=$('#snd');
+  try{on=localStorage.getItem('hn-snd')!=='0'}catch(e){}
+  btn.setAttribute('aria-pressed',on);
+  function init(){if(AC)return;try{AC=new (window.AudioContext||window.webkitAudioContext)();var n=Math.floor(AC.sampleRate*.018);buf=AC.createBuffer(1,n,AC.sampleRate);var d=buf.getChannelData(0);
+    for(var i=0;i<n;i++){var k=i/n;d[i]=(Math.random()*2-1)*Math.pow(1-k,6)+Math.sin(i/AC.sampleRate*2*Math.PI*2600)*Math.pow(1-k,10)*.6}}catch(e){AC=null}}
+  function play(v){var s=AC.createBufferSource(),g=AC.createGain(),f=AC.createBiquadFilter();
+    f.type='highpass';f.frequency.value=900;g.gain.value=v||.35;s.buffer=buf;s.connect(f);f.connect(g);g.connect(AC.destination);s.start()}
+  function click(v){if(!on||!AC)return;if(AC.state!=='running'){var r=AC.resume();if(r&&r.then)r.then(function(){play(v)},function(){});return}play(v)}
+  function unlock(){init();if(AC&&AC.state==='suspended')AC.resume()}
+  addEventListener('pointerdown',unlock,{passive:true,capture:true});addEventListener('keydown',unlock,true);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&AC&&AC.state!=='running')AC.resume()});
+  var SEL='img,video,.sph span,#rscr,.rd button,.thumbs button,.fig';
+  document.addEventListener('pointerover',function(e){if(e.pointerType!=='mouse')return;var t=e.target.closest&&e.target.closest(SEL);if(!t||t.closest('#montage')||t.closest('.rail'))return;
+    var n=performance.now();if(t===last&&n-lt<400)return;if(n-lt<35)return;last=t;lt=n;click()});
+  document.addEventListener('pointerdown',function(e){if(e.button>0)return;var n=performance.now(),dup=AC&&AC.state==='running'&&n-lt<150;lt=n;if(!dup)click(.55)},true);
+  btn.addEventListener('click',function(){on=!on;btn.setAttribute('aria-pressed',on);try{localStorage.setItem('hn-snd',on?'1':'0')}catch(e){}if(on){unlock();setTimeout(function(){click(.55)},30)}});
+})();
+</script>
+<script>(function(){if(!matchMedia('(hover:none)').matches)return;var h=document.getElementById('hint');if(h)h.innerHTML='<b>Tap</b> the sentence to read it in plain words.';var p=document.querySelector('.pintro');if(p)p.innerHTML=p.innerHTML.replace('Move your cursor over a project','Tap a project');})();</script>
+</body>
+</html>
